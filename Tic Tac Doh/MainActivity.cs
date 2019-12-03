@@ -1,13 +1,9 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
-using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
-using Tic_Tac_Doh;
+
 
 namespace Tic_Tac_Doh
 {
@@ -26,6 +22,8 @@ namespace Tic_Tac_Doh
 
         private TextView textViewPlayer1;
         private TextView textViewPlayer2;
+
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -113,13 +111,13 @@ namespace Tic_Tac_Doh
 
         private bool CheckForWin()
         {
-            string[,] field = new string[3, 3];
+            int[,] field = new int[3, 3];
 
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    field[i, j] = (string)buttons[i, j].Tag;
+                    field[i, j] = (int)buttons[i, j].Tag;
                 }
             }
 
@@ -127,7 +125,7 @@ namespace Tic_Tac_Doh
             {
                 if (field[i, 0] == (field[i, 1])
                         && field[i, 0] == (field[i, 2])
-                        && !(field[i, 0] == ("")))
+                        && !(field[i, 0] == Resource.Drawable.resetBlock))
                 {
                     return true;
                 }
@@ -137,7 +135,7 @@ namespace Tic_Tac_Doh
             {
                 if (field[0, i] == (field[1, i])
                         && field[0, i] == (field[2, i])
-                        && !(field[0, i] == ("")))
+                        && !(field[0, i] == Resource.Drawable.resetBlock))
                 {
                     return true;
                 }
@@ -145,14 +143,14 @@ namespace Tic_Tac_Doh
 
             if (field[0, 0] == (field[1, 1])
                     && field[0, 0] == (field[2, 2])
-                    && !(field[0, 0] == ("")))
+                    && !(field[0, 0] == Resource.Drawable.resetBlock))
             {
                 return true;
             }
 
             if (field[0, 2] == (field[1, 1])
                     && field[0, 2] == (field[2, 0])
-                    && !(field[0, 2] == ("")))
+                    && !(field[0, 2] == Resource.Drawable.resetBlock))
             {
                 return true;
             }
@@ -230,8 +228,6 @@ namespace Tic_Tac_Doh
             roundCount = savedInstanceState.GetInt("roundCount");
             player1Points = savedInstanceState.GetInt("player1Points");
             player2Points = savedInstanceState.GetInt("player2Points");
-            player1Turn = savedInstanceState.GetBoolean("player1Turn");
-
 
         }
 
